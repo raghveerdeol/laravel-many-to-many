@@ -25,17 +25,18 @@
                     <tr>
                         <td>{{ $project->id }}</td>
                         @if ($project->type)
-                        <td><a href="{{ route('admin.types.show', $project->type) }}" style="background: {{ $project->type->color }}"  class=" px-2 rounded text-light">{{ $project->type->name }}</a></td>
+                        <td><a href="{{ route('admin.types.show', $project->type) }}" style="background: {{ $project->type->color }}"  class="badge rounded-pill btn">{{ $project->type->name }}</a></td>
                         @else
                             <td>----</td>
                         @endif
 
                         <td>
                             @forelse ($project->technologies as $technology )
+                            <span  style="background: {{ $technology->color }}" class="badge rounded-pill"s>
                                 {{ $technology->name }}
-                                @if (!$loop->last),@endif
+                            </span>
                             @empty
-                                No technology
+                            No technology
                             @endforelse
                         </td>
                         <td>{{ $project->title }}</td>

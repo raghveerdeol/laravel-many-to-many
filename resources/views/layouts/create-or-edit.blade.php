@@ -26,15 +26,6 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-6">
-                    {{-- @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error )
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif --}}
                     <form  method="POST" action="@yield('form-action')" class="form-selector">
                         @yield('form-method')
                         @csrf
@@ -49,6 +40,18 @@
                         <label for="language">Language: </label>
                         <input class="form-control" type="text" placeholder="Language" aria-label="Language" name="language" id="language" value="{{ old('language', $project->language) }}">
                         @error('language')
+                        <div class="alert alert-danger my-2">
+                            {{ $message }}
+                        </div>
+                        @enderror
+
+                        <div class="btn-group d-block" role="group" aria-label="Basic checkbox toggle button group">
+                            @foreach ($technologies as $technology )
+                            <input type="checkbox" class="btn-check" value="{{ old('',$technology->id) }}" name="technologies[]" id="technology-{{$technology->id}}" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="technology-{{$technology->id}}">{{$technology->name}}</label>
+                            @endforeach
+                        </div>
+                        @error('technologies')
                         <div class="alert alert-danger my-2">
                             {{ $message }}
                         </div>

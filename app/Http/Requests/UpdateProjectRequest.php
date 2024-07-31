@@ -25,6 +25,7 @@ class UpdateProjectRequest extends FormRequest
         return [
             'title' => ['required', Rule::unique('projects')->ignore($this->route('project')), 'min:4', 'max:40'],
             'language' => ['required', 'min:3', 'max:60'],
+            'technologies' => ['required', 'array', 'exists:technologies,id'],
             'content' => ['required'],
             'started_on' => ['required', 'date'],
             'finished' => ['required', 'boolean'],
