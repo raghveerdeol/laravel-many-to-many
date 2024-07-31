@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Technology extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     // protected $fillable = [
     //     'name',
@@ -17,6 +16,6 @@ class Technology extends Model
     // ];
 
     public function projects() {
-        return $this->belongsToMany('App\Models\Project');
+        return $this->belongsToMany(Project::class);
     }
 }

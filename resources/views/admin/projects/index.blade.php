@@ -12,8 +12,8 @@
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Type</th>
+                        <th scope="col">Technologies</th>
                         <th scope="col">Title</th>
-                        <th scope="col">Language</th>
                         <th scope="col">Started on</th>
                         <th scope="col">Finished</th>
                         <th scope="col">Website</th>
@@ -23,10 +23,22 @@
                 <tbody>
                     @foreach ($projects as $project)
                     <tr>
-                        <th>{{ $project->id }}</th>
-                        <th><span style="background: {{ $project->type->color }}"  class=" px-2 rounded text-light">{{ $project->type->name }}</span></th>
+                        <td>{{ $project->id }}</td>
+                        @if ($project->type)
+                        <td><a href="{{ route('admin.types.show', $project->type) }}" style="background: {{ $project->type->color }}"  class=" px-2 rounded text-light">{{ $project->type->name }}</a></td>
+                        @else
+                            <td>----</td>
+                        @endif
+
+                        <td>
+                            @forelse ($project->technologies as $technology )
+                                {{ $technology->name }}
+                                @if (!$loop->last),@endif
+                            @empty
+                                No technology
+                            @endforelse
+                        </td>
                         <td>{{ $project->title }}</td>
-                        <td>{{ $project->language }}</td>
                         <td>{{ $project->started_on }}</td>
                         @if ($project->finished === 1)
                         <td>Finished</td>
