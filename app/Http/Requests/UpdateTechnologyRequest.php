@@ -12,7 +12,7 @@ class UpdateTechnologyRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,7 @@ class UpdateTechnologyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', Rule::unique('types')->ignore($this->route('type')),'mine:4', 'max:60'],
+            'name' => ['required', Rule::unique('technologies')->ignore($this->route('technology')),'min:2', 'max:60'],
             'color' => ['required','min:7','max:7'],
         ];
     }
