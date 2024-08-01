@@ -63,6 +63,8 @@
         </div>
     </div>
 </div>
+
+{{$projects->links()}}
 @endsection
 
 @section('script-section')
