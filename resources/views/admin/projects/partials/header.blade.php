@@ -30,6 +30,16 @@
                     <a class="nav-link" href="{{ route('admin.types.create') }}">{{ __('Type create') }}</a>
                 </li>
                 @endif
+                @if (Route::has('admin.technologies.index'))
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.technologies.index') }}">{{ __('Technologies') }}</a>
+                </li>
+                @endif
+                @if (Route::has('admin.technologies.create'))
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.technologies.create') }}">{{ __('Technologies create') }}</a>
+                </li>
+                @endif
             </ul>
 
             <!-- Right Side Of Navbar -->
